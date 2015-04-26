@@ -466,8 +466,7 @@ class Extension(SchemaObject):
             super = query.execute(self.schema)
             if super is None:
                 log.debug(self.schema)
-                raise TypeNotFound(self.ref)
-            if not super.builtin():
+            if super and not super.builtin():
                 deps.append(super)
                 midx = 0
         return (midx, deps)
